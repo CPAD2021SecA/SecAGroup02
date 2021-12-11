@@ -1,0 +1,11 @@
+.flutter-plugins
+.flutter-plugins-dependencies
+deployproj/.dart_tool/*
+deployproj/.packages
+deployproj/build/*
+deployproj/android/local.properties
+deployproj/android/gradlew
+deployproj/android/gradlew.bat
+deployproj/android/.gradle/*
+deployproj/ios/Flutter/Generated.xcconfig
+deployproj/ios/Flutter/flutter_export_environment.sh
