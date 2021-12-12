@@ -1,5 +1,5 @@
-class User{
+class UserManagement{
   final String uid;
 
-  User({ this.uid });
+  UserManagement({ this.uid });
 }
