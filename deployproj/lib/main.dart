@@ -1,3 +1,5 @@
+import 'package:deployproj/service/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         else if(snapshot.hasData){
           return  new MediaQuery(
             data: new MediaQueryData(),
-            child: new MaterialApp(home: new MyHomePage())
+            child: new MaterialApp(home: FirebaseAuth.instance.currentUser != null ? new DomainPage() : new MyHomePage())
           );
         }
         else{
@@ -75,6 +77,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+  String username = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -110,32 +116,48 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
                 padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-                child: Column(
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        validator: (value) => value.isEmpty ? "Enter valid email ID.!" : null,
+                        onChanged: (value) {
+                          setState(() {
+                            username = value;
+                          });
+                        },
+                        decoration: InputDecoration(
                           labelText: 'EMAIL',
                           labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
-                    ),
-                    SizedBox(height: 20.0),
-                    TextField(
-                      decoration: InputDecoration(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
+                        ),
+                        
+                      ),
+                      SizedBox(height: 20.0),
+                       TextFormField(
+                        obscureText: true,
+                        validator: (value) => value.length < 6 ? "Enter a valid password. (With 6 or more charecter)" : null,
+                        onChanged: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
+                        decoration: InputDecoration(
                           labelText: 'PASSWORD',
                           labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
-                      obscureText: true,
-                    ),
-                    SizedBox(height: 5.0),
-                    Container(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
+                        ),
+                        
+                      ),
+                      SizedBox(height: 20.0),
+                      Container(
                       alignment: Alignment(1.0, 0.0),
                       padding: EdgeInsets.only(top: 15.0, left: 20.0),
                       child: InkWell(
@@ -158,8 +180,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.green,
                         elevation: 7.0,
                         child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/domain_page');
+                          onTap: () async {
+                            if(_formKey.currentState.validate()){
+                              dynamic result = await _auth.loginWithEmailAndPassword(username, password);
+                              print(result);
+                              if(result == null){
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Invalid User Credentials.!"),
+                                ));
+                              }
+                              else{
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Login Successful.!"),
+                                ));
+                                Navigator.push(context,
+                                 MaterialPageRoute(builder: (context) => DomainPage()));
+                              }
+                            }
+                            //  Navigator.push(context,
+                            //  MaterialPageRoute(builder: (context) => DomainPage()));
+                            // Navigator.of(context).pushNamed('/domain_page');
                           },
                           child: Center(
                             child: Text(
@@ -203,14 +243,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     )
-                  ],
-                )),
+                    ],
+                  ),
+                ),
+            ),
             SizedBox(height: 15.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'New to Mentizz deploy ?',
+                  'New to our Application ?',
                   style: TextStyle(fontFamily: 'Montserrat'),
                 ),
                 SizedBox(width: 5.0),
