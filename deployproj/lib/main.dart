@@ -6,8 +6,6 @@ import 'domain_page.dart';
 import 'home_page.dart';
 
 void main() async { 
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
   runApp(new MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -22,37 +20,23 @@ class MyApp extends StatelessWidget {
             data: new MediaQueryData(),
             child: new MaterialApp(home: new ErrorWidget())
           );
-          // return ErrorWidget();
+
         }
         else if(snapshot.hasData){
           return  new MediaQuery(
             data: new MediaQueryData(),
             child: new MaterialApp(home: new MyHomePage())
           );
-          // return MyHomePage();
-          // return MaterialApp(
-          //   debugShowCheckedModeBanner: true,
-          //   home: MyHomePage(),
-          // );
         }
         else{
           return  new MediaQuery(
             data: new MediaQueryData(),
             child: new MaterialApp(home: new Loading())
           );
-          // return Loading();
+
         }
       }
     );
-    // return new MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   routes: <String, WidgetBuilder>{
-    //     '/signup': (BuildContext context) => new SignupPage(),
-    //     '/home_page': (BuildContext context) => new HomePage(),
-    //     '/domain_page' :(BuildContext context) => new DomainPage()
-    //   },
-    //   home: new MyHomePage(),
-    // );
   }
 }
 
