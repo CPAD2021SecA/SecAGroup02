@@ -193,6 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text("Login Successful.!"),
                                 ));
+                                Navigator.pop(context);
                                 Navigator.push(context,
                                  MaterialPageRoute(builder: (context) => new DomainPage()));
                               }
@@ -233,6 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text("Google signin Successful.!"),
                                 ));
+                                Navigator.pop(context);
                               Navigator.push(context,
                                  MaterialPageRoute(builder: (context) =>  new DomainPage()));
                             }
@@ -278,6 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(width: 5.0),
                 InkWell(
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.push(context,
                     MaterialPageRoute(builder: (context) => new SignupPage()));
                     // Navigator.of(context).pushNamed('/signup');

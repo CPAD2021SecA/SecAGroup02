@@ -156,6 +156,7 @@ class _SignupPageState extends State<SignupPage> {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text("User Registration Successful.!"),
                                 ));
+                                Navigator.pop(context);
                                  Navigator.push(context,
                                  MaterialPageRoute(builder: (context) => new MyHomePage()));
                               }
@@ -190,7 +191,9 @@ class _SignupPageState extends State<SignupPage> {
                           borderRadius: BorderRadius.circular(20.0)),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pop();
+                          Navigator.pop(context);
+                          Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => new MyHomePage()));
                         },
                         child:
 
