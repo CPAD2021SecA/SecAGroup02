@@ -6,21 +6,81 @@ import 'domain_page.dart';
 import 'home_page.dart';
 
 void main() async { 
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(new MyApp());
 }
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => new SignupPage(),
-        '/home_page': (BuildContext context) => new HomePage(),
-        '/domain_page' :(BuildContext context) => new DomainPage()
-      },
-      home: new MyHomePage(),
+    final _init = Firebase.initializeApp();
+    return FutureBuilder(
+      future: _init,
+      builder: (context, snapshot) {
+        if(snapshot.hasError){
+          return  new MediaQuery(
+            data: new MediaQueryData(),
+            child: new MaterialApp(home: new ErrorWidget())
+          );
+          // return ErrorWidget();
+        }
+        else if(snapshot.hasData){
+          return  new MediaQuery(
+            data: new MediaQueryData(),
+            child: new MaterialApp(home: new MyHomePage())
+          );
+          // return MyHomePage();
+          // return MaterialApp(
+          //   debugShowCheckedModeBanner: true,
+          //   home: MyHomePage(),
+          // );
+        }
+        else{
+          return  new MediaQuery(
+            data: new MediaQueryData(),
+            child: new MaterialApp(home: new Loading())
+          );
+          // return Loading();
+        }
+      }
+    );
+    // return new MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   routes: <String, WidgetBuilder>{
+    //     '/signup': (BuildContext context) => new SignupPage(),
+    //     '/home_page': (BuildContext context) => new HomePage(),
+    //     '/domain_page' :(BuildContext context) => new DomainPage()
+    //   },
+    //   home: new MyHomePage(),
+    // );
+  }
+}
+
+class Loading extends StatelessWidget {
+  // const Loading({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+}
+
+class ErrorWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Column(
+        children: [
+          Icon(Icons.error),
+          Text("Oops.. Something went wrong.!")
+
+        ],
+      ),),
     );
   }
 }
@@ -172,7 +232,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(width: 5.0),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed('/signup');
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignupPage()));
+                    // Navigator.of(context).pushNamed('/signup');
                   },
                   child: Text(
                     'Register',
