@@ -1,3 +1,5 @@
+import 'package:deployproj/main.dart';
+import 'package:deployproj/service/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:deployproj/helper/color.dart';
 import 'package:deployproj/helper/m_fonts.dart';
@@ -7,6 +9,7 @@ import 'package:deployproj/home_page.dart';
 
 
 class DomainPage extends StatelessWidget {
+  final AuthService _auth = AuthService();
   DomainPage({Key key, this.model}) : super(key: key);
   final DomainModel model;
   List<DomainModel> list = [
@@ -89,15 +92,16 @@ class DomainPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: Icon(MIcons.keyboard_arrow_left),
-                          ),
-                        ),
+                        SizedBox(height: 40),
+                        OutlinedButton.icon(onPressed: () async {
+                            await _auth.logOut();
+                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Logged out successfully.!"),
+                                ));
+                            Navigator.push(context,
+                                 MaterialPageRoute(builder: (context) => new MyHomePage()));
+                        }, icon: Icon(Icons.logout), label: Text("Logout")),
+                        
                         SizedBox(height: 40),
                         Text("Find Your",
                             style: GoogleFonts.inter(
