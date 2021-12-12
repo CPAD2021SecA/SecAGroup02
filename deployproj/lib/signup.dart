@@ -37,103 +37,98 @@ class _SignupPageState extends State<SignupPage> {
               ],
             ),
           ),
+          
           Container(
               padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-              child: Column(
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
+              child: Form(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 10.0),
+                    TextFormField(
+                      onChanged: (val) {},
+                      decoration: InputDecoration(
                         labelText: 'EMAIL',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
-                        // hintText: 'EMAIL',
-                        // hintStyle: ,
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
-                  ),
-                  SizedBox(height: 10.0),
-                  TextField(
-                    decoration: InputDecoration(
-                        labelText: 'PASSWORD ',
+                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
+                      )
+                    ),
+                    SizedBox(height: 10.0),
+                    TextFormField(
+                      obscureText: true,
+                      onChanged: (val) {},
+                      decoration: InputDecoration(
+                        labelText: 'PASSWORD',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 10.0),
-                  TextField(
-                    decoration: InputDecoration(
-                        labelText: 'CONFIRM PASSWORD ',
+                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
+                      )
+                    ),
+                    SizedBox(height: 10.0),
+                    TextFormField(
+                      obscureText: true,
+                      onChanged: (val) {},
+                      decoration: InputDecoration(
+                        labelText: 'CONFIRM PASSWORD',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 15.0),
-                  DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
-                    items: <String>['Mentor', 'Mentee'].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    isExpanded: true,
-                    hint:Text(
-                    "What Role you want to Play?",
-                    style: TextStyle(
+                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
+                      )
+                    ),
+                    SizedBox(height: 10.0),
+                    DropdownButtonFormField(
+                      onChanged: (String newValue) {
+                          setState(() {
+                            dropdownValue = newValue;
+                          });
+                      },
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontFamily: 'Montserrat',
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,),
-                    ),
-                   onChanged: (String newValue) {
-                    setState(() {
-                      dropdownValue = newValue;
-                    });
-                    },
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontFamily: 'Montserrat',
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       
-                    ),
-                    
-                  ),
-                  
-                  SizedBox(height: 50.0),
-                  Container(
-                      height: 40.0,
-                      child: Material(
-                        borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
-                        elevation: 7.0,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Center(
-                            child: Text(
-                              'SIGNUP',
+                      ),
+                      isExpanded: true,
+                      value: dropdownValue,
+                      icon: const Icon(Icons.arrow_downward),
+                      items: <String>['Mentor', 'Mentee'].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                          }).toList(),
+                      
+                      ),
+                     SizedBox(height: 20.0),
+                     Container(
+                       height: 40.0,
+                       child: Material(
+                         borderRadius: BorderRadius.circular(20.0),
+                         shadowColor: Colors.greenAccent,
+                         color: Colors.green,
+                         elevation: 7.0,
+                         child: GestureDetector(
+                           onTap: () {},
+                           child: Center(
+                             child: Text(
+                               'SIGNUP',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat'),
-                            ),
-                          ),
-                        ),
-                      )),
-                  SizedBox(height: 20.0),
-                  Container(
+                                   color: Colors.white,
+                                   fontWeight: FontWeight.bold,
+                                   fontFamily: 'Montserrat'),
+                             ),
+                           ),
+                         ),
+                       )),
+                       SizedBox(height: 20.0),
+                       Container(
                     height: 40.0,
                     color: Colors.transparent,
                     child: Container(
@@ -159,10 +154,12 @@ class _SignupPageState extends State<SignupPage> {
 
 
                       ),
-                    ),
-                  ),
-                ],
-              )),
+                    ))
+                  ],
+                )
+              ),
+              
+              ),
 
         ]));
   }
