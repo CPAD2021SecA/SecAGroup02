@@ -194,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   content: Text("Login Successful.!"),
                                 ));
                                 Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) => DomainPage()));
+                                 MaterialPageRoute(builder: (context) => new DomainPage()));
                               }
                             }
                             //  Navigator.push(context,
@@ -234,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   content: Text("Google signin Successful.!"),
                                 ));
                               Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) => DomainPage()));
+                                 MaterialPageRoute(builder: (context) =>  new DomainPage()));
                             }
                           },
                           child: Center(
@@ -279,7 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignupPage()));
+                    MaterialPageRoute(builder: (context) => new SignupPage()));
                     // Navigator.of(context).pushNamed('/signup');
                   },
                   child: Text(
