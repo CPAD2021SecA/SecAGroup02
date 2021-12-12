@@ -37,8 +37,6 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
     function loadMainDartJs() {
@@ -101,11 +99,10 @@
       // Service workers not supported. Just drop the <script> tag.
       loadMainDartJs();
     }
-    
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyCEVsJRnLdcHObo7FlWtlOWNz-Wz5DiPP0",
       authDomain: "mentoring-app-17e5b.firebaseapp.com",
@@ -114,9 +111,7 @@
       messagingSenderId: "37964675467",
       appId: "1:37964675467:web:75110313246154ec65578e"
     };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
   </script>
 </body>
 </html>
