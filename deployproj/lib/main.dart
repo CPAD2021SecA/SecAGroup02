@@ -216,33 +216,53 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(height: 20.0),
                     Container(
                       height: 40.0,
-                      color: Colors.transparent,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.black,
-                                style: BorderStyle.solid,
-                                width: 1.0),
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                      child: Material(
+                        borderRadius: BorderRadius.circular(20.0),
+                        shadowColor: Colors.green,
+                        color: Colors.white,
+                        elevation: 7.0,
+                        child: GestureDetector(
+                          onTap: () async {
+                            dynamic result = await _auth.googleLogin();
+                            if(result == null){
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Google signin failed.!"),
+                                ));
+                            }
+                            else{
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Google signin Successful.!"),
+                                ));
+                              Navigator.push(context,
+                                 MaterialPageRoute(builder: (context) => DomainPage()));
+                            }
+                          },
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center, 
+                              children: <Widget>[
                             Center(
                               child:
                               ImageIcon(AssetImage('assets/images/facebook.png')),
                             ),
                             SizedBox(width: 10.0),
                             Center(
-                              child: Text('Log in with facebook',
+                              child: Text('Log in with Google',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat')),
+                                      fontFamily: 'Montserrat'),
+                                      
+                                      ),
+                                  
                             )
                           ],
+                            )
+                            
+                          ),
                         ),
                       ),
-                    )
+                    ),
+                    
                     ],
                   ),
                 ),

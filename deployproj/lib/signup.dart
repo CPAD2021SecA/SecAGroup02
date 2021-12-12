@@ -157,7 +157,7 @@ class _SignupPageState extends State<SignupPage> {
                                   content: Text("User Registration Successful.!"),
                                 ));
                                  Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) => MyHomePage()));
+                                 MaterialPageRoute(builder: (context) => new MyHomePage()));
                               }
                             }
                             else{
