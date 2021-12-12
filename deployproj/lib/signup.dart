@@ -6,6 +6,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  String dropdownValue = 'Mentor';
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -67,14 +68,49 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(height: 10.0),
                   TextField(
                     decoration: InputDecoration(
-                        labelText: 'NICK NAME ',
+                        labelText: 'CONFIRM PASSWORD ',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.green))),
+                    obscureText: true,
                   ),
+                  SizedBox(height: 15.0),
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: const Icon(Icons.arrow_downward),
+                    items: <String>['Mentor', 'Mentee'].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    isExpanded: true,
+                    hint:Text(
+                    "What Role you want to Play?",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontFamily: 'Montserrat',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,),
+                    ),
+                   onChanged: (String newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                    });
+                    },
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontFamily: 'Montserrat',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      
+                    ),
+                    
+                  ),
+                  
                   SizedBox(height: 50.0),
                   Container(
                       height: 40.0,
