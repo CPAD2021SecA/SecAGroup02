@@ -1,3 +1,4 @@
+import 'package:deployproj/service/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
@@ -6,7 +7,15 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
   String dropdownValue = 'Mentor';
+  String username = '';
+  String password = '';
+  String confirmPassword = '';
+  String error = '';
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -41,11 +50,17 @@ class _SignupPageState extends State<SignupPage> {
           Container(
               padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
               child: Form(
+                key: _formKey,
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 10.0),
                     TextFormField(
-                      onChanged: (val) {},
+                      validator: (value) => value.isEmpty ? "Enter a valid email." : null,
+                      onChanged: (val) {
+                        setState(() {
+                          username = val;
+                        });
+                      },
                       decoration: InputDecoration(
                         labelText: 'EMAIL',
                         labelStyle: TextStyle(
@@ -57,8 +72,13 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     SizedBox(height: 10.0),
                     TextFormField(
+                      validator: (value) => value.length < 6 ? "Enter a valid password. (With 6 or more charecter)" : null,
                       obscureText: true,
-                      onChanged: (val) {},
+                      onChanged: (val) {
+                        setState(() {
+                          password = val;
+                        });
+                      },
                       decoration: InputDecoration(
                         labelText: 'PASSWORD',
                         labelStyle: TextStyle(
@@ -70,8 +90,13 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     SizedBox(height: 10.0),
                     TextFormField(
+                      validator: (value) => value.length < 6 ? "Enter a valid password. (With 6 or more charecter)" : value == password ? null : "Password Mismatch.!" ,
                       obscureText: true,
-                      onChanged: (val) {},
+                      onChanged: (val) {
+                        setState(() {
+                          confirmPassword = val;
+                        });
+                      },
                       decoration: InputDecoration(
                         labelText: 'CONFIRM PASSWORD',
                         labelStyle: TextStyle(
@@ -115,7 +140,23 @@ class _SignupPageState extends State<SignupPage> {
                          color: Colors.green,
                          elevation: 7.0,
                          child: GestureDetector(
-                           onTap: () {},
+                           onTap: () async {
+                            if(_formKey.currentState.validate()){
+                              dynamic result = await _auth.registerWithEmailAndPassword(username, password);
+                              print(result);
+                              if(result == null){
+                                setState(() {
+                                  error = "Oops.! Something went wrong. Please try again.";
+                                });
+                              }
+                              else{
+                                 Navigator.of(context).pushNamed('/domain_page');
+                              }
+                            }
+                            else{
+                              print("Validation failed.!");
+                            }
+                           },
                            child: Center(
                              child: Text(
                                'SIGNUP',
@@ -127,6 +168,7 @@ class _SignupPageState extends State<SignupPage> {
                            ),
                          ),
                        )),
+                       
                        SizedBox(height: 20.0),
                        Container(
                     height: 40.0,
@@ -154,7 +196,15 @@ class _SignupPageState extends State<SignupPage> {
 
 
                       ),
-                    ))
+                    )),
+                    SizedBox(height: 20.0),
+                        Text(
+                          error,
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 14
+                           ),
+                        ),
                   ],
                 )
               ),
