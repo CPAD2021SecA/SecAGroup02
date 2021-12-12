@@ -1,6 +1,8 @@
 import 'package:deployproj/service/auth.dart';
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class SignupPage extends StatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
@@ -145,12 +147,17 @@ class _SignupPageState extends State<SignupPage> {
                               dynamic result = await _auth.registerWithEmailAndPassword(username, password);
                               print(result);
                               if(result == null){
-                                setState(() {
-                                  error = "Oops.! Something went wrong. Please try again.";
-                                });
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Oops.! Something went wrong. Please try again. Possibly you are already registered with us."),
+                                ));
                               }
                               else{
-                                 Navigator.of(context).pushNamed('/domain_page');
+                                
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("User Registration Successful.!"),
+                                ));
+                                 Navigator.push(context,
+                                 MaterialPageRoute(builder: (context) => MyHomePage()));
                               }
                             }
                             else{
