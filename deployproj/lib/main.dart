@@ -1,3 +1,4 @@
+import 'package:deployproj/passwordreset.dart';
 import 'package:deployproj/service/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -159,18 +160,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         
                       ),
-                      SizedBox(height: 20.0),
+                      SizedBox(height: 10.0),
                       Container(
+                      
                       alignment: Alignment(1.0, 0.0),
                       padding: EdgeInsets.only(top: 15.0, left: 20.0),
                       child: InkWell(
-                        child: Text(
-                          'Forgot Password',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                              decoration: TextDecoration.underline),
+                        child: TextButton(
+                          child: Text("Forgot Password"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(context,
+                                 MaterialPageRoute(builder: (context) => new ResetPassword()));
+                          },
                         ),
                       ),
                     ),
@@ -201,9 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                  MaterialPageRoute(builder: (context) => new DomainPage()));
                               }
                             }
-                            //  Navigator.push(context,
-                            //  MaterialPageRoute(builder: (context) => DomainPage()));
-                            // Navigator.of(context).pushNamed('/domain_page');
+                            
                           },
                           child: Center(
                             child: Text(

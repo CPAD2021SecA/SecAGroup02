@@ -21,6 +21,10 @@ class AuthService{
    return user.displayName;
 }
 
+  void sendPasswordReset(String email){
+    _auth.sendPasswordResetEmail(email: email);
+  }
+
   Future googleLogin() async {
     final googleUser = await googleSignIn.signIn();
     if(googleUser == null) return;
