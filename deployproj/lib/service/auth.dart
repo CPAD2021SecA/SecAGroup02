@@ -1,5 +1,6 @@
 
 import 'package:deployproj/model/user.dart';
+import 'package:deployproj/service/dabase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -67,6 +68,21 @@ class AuthService{
       UserCredential result =  await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
       await user.updateDisplayName(name);
+      await DatabaseService(uid: user.uid).updateMentorDetails(
+        "dummy",
+        "photo",
+        "spe",
+        "fff",
+        "rrr",
+        "rttt",
+        "resss",
+        "sss",
+        "eee",
+        "yyy",
+        "qqq",
+        3.5,
+        4
+      );
       return _userFromFirebaseUser(user);
     }
     catch(exception){
