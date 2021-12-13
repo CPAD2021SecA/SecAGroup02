@@ -88,7 +88,7 @@ class DomainPage extends StatelessWidget {
           children: [
             new Text("SideByGuide.com"),
             Spacer(),
-            new Text("Welcome "+ _auth.loggedInUser()),
+            // new Text("Welcome "+ _auth.loggedInUser()),
             OutlinedButton.icon(onPressed: () async {
                             await _auth.logOut();
                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -116,7 +116,12 @@ class DomainPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        
+                        SizedBox(height: 20),
+                        Text(_auth.loggedInUser()+"'s Dashboard",
+                            style: GoogleFonts.inter(
+                                fontSize: 17,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w400)),
                         SizedBox(height: 40),
                         Text("Find Your",
                             style: GoogleFonts.inter(

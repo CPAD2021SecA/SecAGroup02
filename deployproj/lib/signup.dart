@@ -17,6 +17,7 @@ class _SignupPageState extends State<SignupPage> {
   String password = '';
   String confirmPassword = '';
   String error = '';
+  String name = '';
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +26,13 @@ class _SignupPageState extends State<SignupPage> {
         title: Text("SideByGuide.com"),
       ),
         resizeToAvoidBottomInset: false,
-        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+        body: SingleChildScrollView( child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
             Widget>[
           Container(
             child: Stack(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(15.0, 50.0, 0.0, 0.0),
                   child: Text(
                     'Signup',
                     style:
@@ -39,7 +40,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(260.0, 125.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(260.0, 55.0, 0.0, 0.0),
                   child: Text(
                     '.',
                     style: TextStyle(
@@ -53,11 +54,27 @@ class _SignupPageState extends State<SignupPage> {
           ),
           
           Container(
-              padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+              padding: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
+                    TextFormField(
+                      validator: (value) => value.isEmpty ? "Enter your name." : null,
+                      onChanged: (val) {
+                        setState(() {
+                          name = val;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'NAME',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
+                      )
+                    ),
                     SizedBox(height: 10.0),
                     TextFormField(
                       validator: (value) => value.isEmpty ? "Enter a valid email." : null,
@@ -147,7 +164,7 @@ class _SignupPageState extends State<SignupPage> {
                          child: GestureDetector(
                            onTap: () async {
                             if(_formKey.currentState.validate()){
-                              dynamic result = await _auth.registerWithEmailAndPassword(username, password);
+                              dynamic result = await _auth.registerWithEmailAndPassword(username, password, name);
                               print(result);
                               if(result == null){
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -224,6 +241,6 @@ class _SignupPageState extends State<SignupPage> {
               
               ),
 
-        ]));
+        ])));
   }
 }

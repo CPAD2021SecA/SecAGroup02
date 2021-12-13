@@ -89,26 +89,26 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("SideByGuide.com"),
       ),
         resizeToAvoidBottomInset: false,
-        body: Column(
+        body: SingleChildScrollView( child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               child: Stack(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(15.0, 50.0, 0.0, 0.0),
                     child: Text('Hello',
                         style: TextStyle(
                             fontSize: 80.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(16.0, 110.0, 0.0, 0.0),
                     child: Text('There',
                         style: TextStyle(
                             fontSize: 80.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(220.0, 175.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(220.0, 115.0, 0.0, 0.0),
                     child: Text('.',
                         style: TextStyle(
                             fontSize: 80.0,
@@ -160,11 +160,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         
                       ),
-                      SizedBox(height: 10.0),
+                      // SizedBox(height: 10.0),
                       Container(
                       
                       alignment: Alignment(1.0, 0.0),
-                      padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                      padding: EdgeInsets.only(left: 20.0),
                       child: InkWell(
                         child: TextButton(
                           child: Text("Forgot Password"),
@@ -300,6 +300,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             )
           ],
-        ));
+        )));
   }
 }
