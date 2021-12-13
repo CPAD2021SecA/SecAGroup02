@@ -10,8 +10,16 @@ class AuthService{
 
   GoogleSignInAccount get user => _user;
   UserManagement _userFromFirebaseUser(User user){
-    return user != null ? UserManagement(uid: user.uid) : null;
+    return user != null ? UserManagement(uid: user.uid, displayName: user.displayName) : null;
   }
+
+  String loggedInUser()  {
+   final User user =  _auth.currentUser;
+   if(user.displayName == null){
+     return user.email;
+   }
+   return user.displayName;
+}
 
   Future googleLogin() async {
     final googleUser = await googleSignIn.signIn();

@@ -82,6 +82,30 @@ class DomainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            new Text("SideByGuide.com"),
+            Spacer(),
+            new Text("Welcome "+ _auth.loggedInUser()),
+            OutlinedButton.icon(onPressed: () async {
+                            await _auth.logOut();
+                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Logged out successfully.!"),
+                                ));
+                            Navigator.pop(context);
+                            Navigator.push(context,
+                                 MaterialPageRoute(builder: (context) => new MyHomePage()));
+                        }, icon: Icon(Icons.logout), label: Text("Logout"), style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        
+                        ),),
+          ],
+        ),
+      
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
             child: Column(
@@ -92,15 +116,6 @@ class DomainPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(height: 40),
-                        OutlinedButton.icon(onPressed: () async {
-                            await _auth.logOut();
-                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text("Logged out successfully.!"),
-                                ));
-                            Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) => new MyHomePage()));
-                        }, icon: Icon(Icons.logout), label: Text("Logout")),
                         
                         SizedBox(height: 40),
                         Text("Find Your",
