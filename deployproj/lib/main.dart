@@ -79,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-            // title: Text("SideByGuide.com"),
-            ),
+          title: Text("Mentizzzz"),
+        ),
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
             child: Column(

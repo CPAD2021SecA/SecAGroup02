@@ -55,15 +55,7 @@ class DomainPage extends StatelessWidget {
         title: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Icon(MIcons.keyboard_arrow_left),
-              ),
-            ),
+            new Text("Mentizzzz"),
             Spacer(),
             // new Text("Welcome "+ _auth.loggedInUser()),
             OutlinedButton.icon(
@@ -97,7 +89,7 @@ class DomainPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(height: 20),
-                    Text(_auth.loggedInUser() + "'s Dashboard",
+                    Text("Welcome " + _auth.loggedInUser() + "!",
                         style: GoogleFonts.inter(
                             fontSize: 17,
                             color: Colors.black87,
