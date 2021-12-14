@@ -6,6 +6,11 @@ class DatabaseService{
 
   final CollectionReference mentorsCollection = FirebaseFirestore.instance.collection("Mentor");
 
+  Future checkDocumentExist(String documentId) async{
+    final snapShot = await mentorsCollection.doc(documentId).get();
+    return snapShot;
+  }
+
   Future updateMentorDetails(
     String domain,
     String photoUrl,

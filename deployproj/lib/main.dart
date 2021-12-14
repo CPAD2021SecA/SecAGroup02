@@ -1,5 +1,9 @@
 import 'package:deployproj/passwordreset.dart';
+import 'package:deployproj/profile_page.dart';
+import 'package:deployproj/selectionScreen.dart';
 import 'package:deployproj/service/auth.dart';
+import 'package:deployproj/service/dabase.dart';
+import 'package:deployproj/updateProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -244,7 +248,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => new DomainPage()));
+                                      builder: (context) => new SelectionScreen()));
+                              // print(_auth.loggedInUserID());
+                              // dynamic res = await DatabaseService(uid: _auth.loggedInUserID()).checkDocumentExist(_auth.loggedInUserID());
+                              // if(res == null || !res.exists){
+                              //   print("hi");
+                              //   Navigator.pop(context);
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => new ProfileUpdate()));
+                              // }
+                              // else{
+                              //   print("hoo");
+                              //   Navigator.pop(context);
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => new DomainPage()));
+                              // }
+                              
                             }
                           },
                           child: Center(
