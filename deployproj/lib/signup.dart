@@ -1,4 +1,5 @@
 import 'package:deployproj/service/auth.dart';
+import 'package:deployproj/updateProfile.dart';
 import 'package:flutter/material.dart';
 
 import 'main.dart';
@@ -165,6 +166,12 @@ class _SignupPageState extends State<SignupPage> {
                           elevation: 7.0,
                           child: GestureDetector(
                             onTap: () async {
+                              // Navigator.pop(context);
+                              //       Navigator.push(
+                              //           context,
+                              //           MaterialPageRoute(
+                              //               builder: (context) =>
+                              //                   new ProfileUpdate()));
                               if (_formKey.currentState.validate()) {
                                 dynamic result =
                                     await _auth.registerWithEmailAndPassword(
@@ -182,13 +189,22 @@ class _SignupPageState extends State<SignupPage> {
                                     content:
                                         Text("User Registration Successful.!"),
                                   ));
+                                  if(dropdownValue == "Mentor"){
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                new ProfileUpdate()));
+                                  }
+                                  else{
                                   Navigator.pop(context);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
                                               new MyHomePage()));
-                                }
+                                }}
                               } else {
                                 print("Validation failed.!");
                               }

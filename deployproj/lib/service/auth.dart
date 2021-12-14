@@ -22,6 +22,11 @@ class AuthService{
    return user.displayName;
 }
 
+String loggedInUserID()  {
+   final User user =  _auth.currentUser;
+   return user.uid;
+}
+
   void sendPasswordReset(String email){
     _auth.sendPasswordResetEmail(email: email);
   }
@@ -63,26 +68,28 @@ class AuthService{
     }
   }
 
+  Future updateMentorProfile(String domain,
+    String photoUrl,
+    String specialist,
+    String about,
+    String achivementHead1,
+    String achievementDesc1,
+    String achivementHead2,
+    String achievementDesc2,
+  ) async {
+    try{
+       return await DatabaseService(uid: loggedInUserID()).updateMentorDetails(domain, photoUrl, specialist, about, achivementHead1, achievementDesc1, achivementHead2, achievementDesc2, 0.0, 0);
+    }
+    catch(exception){
+      return null;
+    }
+  }
+
   Future registerWithEmailAndPassword(String email, String password, String name) async {
     try{
       UserCredential result =  await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
       await user.updateDisplayName(name);
-      await DatabaseService(uid: user.uid).updateMentorDetails(
-        "dummy",
-        "photo",
-        "spe",
-        "fff",
-        "rrr",
-        "rttt",
-        "resss",
-        "sss",
-        "eee",
-        "yyy",
-        "qqq",
-        3.5,
-        4
-      );
       return _userFromFirebaseUser(user);
     }
     catch(exception){
