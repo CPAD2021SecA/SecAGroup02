@@ -28,8 +28,8 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _cards(
-      context,
-      ) {
+    context,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
@@ -165,17 +165,17 @@ class ProfilePage extends StatelessWidget {
             child: Icon(MIcons.star_fill_16, color: MColor.yellow)),
         title: Text("Supported 100+ startups",
             style:
-            GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 15)),
+                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 15)),
         subtitle: Text(Constants.description.substring(0, 90),
             style:
-            GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 12)),
+                GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 12)),
       ),
     );
   }
 
   Widget _button() {
     return FlatButton(
-      color: MColor.green,
+      color: MColor.blue,
       onPressed: () {},
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(

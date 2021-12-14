@@ -52,7 +52,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               fontWeight: FontWeight.bold,
                               color: Colors.grey),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
+                              borderSide: BorderSide(color: Colors.blue))),
                     ),
                     SizedBox(height: 20.0),
                   ],

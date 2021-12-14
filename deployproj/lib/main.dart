@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
             return new MediaQuery(
                 data: new MediaQueryData(),
                 child: new MaterialApp(
+                    debugShowCheckedModeBanner: false,
                     home: FirebaseAuth.instance.currentUser != null
                         ? new DomainPage()
                         : new MyHomePage()));
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                             fontSize: 80.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green)),
+                            color: Colors.blue)),
                   )
                 ],
               ),
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.grey),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
+                              borderSide: BorderSide(color: Colors.blue))),
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
@@ -153,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.grey),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
+                              borderSide: BorderSide(color: Colors.blue))),
                     ),
                     // SizedBox(height: 10.0),
                     Container(
@@ -177,8 +178,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 40.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
+                        shadowColor: Colors.blueAccent,
+                        color: Colors.blue,
                         elevation: 7.0,
                         child: GestureDetector(
                           onTap: () async {
@@ -223,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 40.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.green,
+                        shadowColor: Colors.blue,
                         color: Colors.white,
                         elevation: 7.0,
                         child: GestureDetector(
@@ -293,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     'Register',
                     style: TextStyle(
-                        color: Colors.green,
+                        color: Colors.blue,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline),

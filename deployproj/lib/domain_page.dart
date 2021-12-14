@@ -100,7 +100,7 @@ class DomainPage extends StatelessWidget {
                             fontSize: 22,
                             color: Colors.black87,
                             fontWeight: FontWeight.w300)),
-                    Text("Perfect Mentor",
+                    Text("Perfect Domain",
                         style: GoogleFonts.inter(
                             fontSize: 22,
                             color: Colors.black87,
