@@ -8,38 +8,34 @@ import 'signup.dart';
 import 'domain_page.dart';
 import 'home_page.dart';
 
-void main() async { 
+void main() async {
   runApp(new MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _init = Firebase.initializeApp();
     return FutureBuilder(
-      future: _init,
-      builder: (context, snapshot) {
-        if(snapshot.hasError){
-          return  new MediaQuery(
-            data: new MediaQueryData(),
-            child: new MaterialApp(home: new ErrorWidget())
-          );
-
-        }
-        else if(snapshot.hasData){
-          return  new MediaQuery(
-            data: new MediaQueryData(),
-            child: new MaterialApp(home: FirebaseAuth.instance.currentUser != null ? new DomainPage() : new MyHomePage())
-          );
-        }
-        else{
-          return  new MediaQuery(
-            data: new MediaQueryData(),
-            child: new MaterialApp(home: new Loading())
-          );
-
-        }
-      }
-    );
+        future: _init,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return new MediaQuery(
+                data: new MediaQueryData(),
+                child: new MaterialApp(home: new ErrorWidget()));
+          } else if (snapshot.hasData) {
+            return new MediaQuery(
+                data: new MediaQueryData(),
+                child: new MaterialApp(
+                    home: FirebaseAuth.instance.currentUser != null
+                        ? new DomainPage()
+                        : new MyHomePage()));
+          } else {
+            return new MediaQuery(
+                data: new MediaQueryData(),
+                child: new MaterialApp(home: new Loading()));
+          }
+        });
   }
 }
 
@@ -57,17 +53,14 @@ class Loading extends StatelessWidget {
 }
 
 class ErrorWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Column(
-        children: [
-          Icon(Icons.error),
-          Text("Oops.. Something went wrong.!")
-
-        ],
-      ),),
+      body: Center(
+        child: Column(
+          children: [Icon(Icons.error), Text("Oops.. Something went wrong.!")],
+        ),
+      ),
     );
   }
 }
@@ -85,11 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(
-        title: Text("SideByGuide.com"),
-      ),
+        appBar: AppBar(
+            // title: Text("SideByGuide.com"),
+            ),
         resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView( child: Column(
+        body: SingleChildScrollView(
+            child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
@@ -119,50 +113,50 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        validator: (value) => value.isEmpty ? "Enter valid email ID.!" : null,
-                        onChanged: (value) {
-                          setState(() {
-                            username = value;
-                          });
-                        },
-                        decoration: InputDecoration(
+              padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      validator: (value) =>
+                          value.isEmpty ? "Enter valid email ID.!" : null,
+                      onChanged: (value) {
+                        setState(() {
+                          username = value;
+                        });
+                      },
+                      decoration: InputDecoration(
                           labelText: 'EMAIL',
                           labelStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
-                        ),
-                        
-                      ),
-                      SizedBox(height: 20.0),
-                       TextFormField(
-                        obscureText: true,
-                        validator: (value) => value.length < 6 ? "Enter a valid password. (With 6 or more charecter)" : null,
-                        onChanged: (value) {
-                          setState(() {
-                            password = value;
-                          });
-                        },
-                        decoration: InputDecoration(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.green))),
+                    ),
+                    SizedBox(height: 20.0),
+                    TextFormField(
+                      obscureText: true,
+                      validator: (value) => value.length < 6
+                          ? "Enter a valid password. (With 6 or more charecter)"
+                          : null,
+                      onChanged: (value) {
+                        setState(() {
+                          password = value;
+                        });
+                      },
+                      decoration: InputDecoration(
                           labelText: 'PASSWORD',
                           labelStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green) )
-                        ),
-                        
-                      ),
-                      // SizedBox(height: 10.0),
-                      Container(
-                      
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.green))),
+                    ),
+                    // SizedBox(height: 10.0),
+                    Container(
                       alignment: Alignment(1.0, 0.0),
                       padding: EdgeInsets.only(left: 20.0),
                       child: InkWell(
@@ -170,8 +164,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text("Forgot Password"),
                           onPressed: () {
                             Navigator.pop(context);
-                            Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) => new ResetPassword()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => new ResetPassword()));
                           },
                         ),
                       ),
@@ -186,24 +182,29 @@ class _MyHomePageState extends State<MyHomePage> {
                         elevation: 7.0,
                         child: GestureDetector(
                           onTap: () async {
-                            if(_formKey.currentState.validate()){
-                              dynamic result = await _auth.loginWithEmailAndPassword(username, password);
+                            if (_formKey.currentState.validate()) {
+                              dynamic result =
+                                  await _auth.loginWithEmailAndPassword(
+                                      username, password);
                               print(result);
-                              if(result == null){
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              if (result == null) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
                                   content: Text("Invalid User Credentials.!"),
                                 ));
-                              }
-                              else{
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
                                   content: Text("Login Successful.!"),
                                 ));
                                 Navigator.pop(context);
-                                Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) => new DomainPage()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            new DomainPage()));
                               }
                             }
-                            
                           },
                           child: Center(
                             child: Text(
@@ -228,49 +229,48 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: GestureDetector(
                           onTap: () async {
                             dynamic result = await _auth.googleLogin();
-                            if(result == null){
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text("Google signin failed.!"),
-                                ));
-                            }
-                            else{
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text("Google signin Successful.!"),
-                                ));
-                                Navigator.pop(context);
-                              Navigator.push(context,
-                                 MaterialPageRoute(builder: (context) =>  new DomainPage()));
+                            if (result == null) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("Google signin failed.!"),
+                              ));
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("Google signin Successful.!"),
+                              ));
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => new DomainPage()));
                             }
                           },
                           child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center, 
-                              children: <Widget>[
-                            Center(
-                              child:
-                              ImageIcon(AssetImage('assets/images/facebook.png')),
-                            ),
-                            SizedBox(width: 10.0),
-                            Center(
-                              child: Text('Log in with Google',
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Center(
+                                child: ImageIcon(
+                                    AssetImage('assets/images/facebook.png')),
+                              ),
+                              SizedBox(width: 10.0),
+                              Center(
+                                child: Text(
+                                  'Log in with Google',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Montserrat'),
-                                      
-                                      ),
-                                  
-                            )
-                          ],
-                            )
-                            
-                          ),
+                                ),
+                              )
+                            ],
+                          )),
                         ),
                       ),
                     ),
-                    
-                    ],
-                  ),
+                  ],
                 ),
+              ),
             ),
             SizedBox(height: 15.0),
             Row(
@@ -284,8 +284,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => new SignupPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => new SignupPage()));
                     // Navigator.of(context).pushNamed('/signup');
                   },
                   child: Text(

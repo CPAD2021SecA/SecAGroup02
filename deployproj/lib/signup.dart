@@ -23,7 +23,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text("SideByGuide.com"),
+        // title: Text("SideByGuide.com"),
       ),
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView( child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <

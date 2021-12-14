@@ -1,5 +1,8 @@
-class DomainModel{
-  final String name;
+import 'package:flutter/cupertino.dart';
 
-  DomainModel({this.name});
+class DomainModel {
+  final String name;
+  final IconData icon;
+
+  DomainModel({this.name, this.icon});
 }

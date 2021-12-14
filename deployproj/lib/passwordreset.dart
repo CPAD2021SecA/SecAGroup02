@@ -21,7 +21,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         title: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            new Text("SideByGuide.com"),
+            // new Text("SideByGuide.com"),
             Spacer(),
             new Text("Reset Password"),
             
