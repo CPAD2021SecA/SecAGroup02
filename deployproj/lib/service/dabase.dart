@@ -21,7 +21,9 @@ class DatabaseService{
     String achivementHead2,
     String achievementDesc2,
     double rating,
-    int numberOfRatings
+    int numberOfRatings,
+    String name,
+    String uid
   ) async {
     return await mentorsCollection.doc(uid).set({
       "domain": domain,
@@ -33,7 +35,9 @@ class DatabaseService{
       "achievementDesc2": achievementDesc1,
       "achivementHead2": achivementHead1,
       "rating": rating,
-      "noOfRating": numberOfRatings
+      "noOfRating": numberOfRatings,
+      "uid": uid,
+      "name": name
     });
   }
 
