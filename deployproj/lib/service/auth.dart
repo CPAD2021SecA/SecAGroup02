@@ -80,7 +80,7 @@ String loggedInUserID()  {
     String uid
   ) async {
     try{
-       return await DatabaseService(uid: loggedInUserID()).updateMentorDetails(domain, photoUrl, specialist, about, achivementHead1, achievementDesc1, achivementHead2, achievementDesc2, 0.0, 0);
+       return await DatabaseService(uid: loggedInUserID()).updateMentorDetails(domain, photoUrl, specialist, about, achivementHead1, achievementDesc1, achivementHead2, achievementDesc2, 0.0, 0, name, uid);
     }
     catch(exception){
       return null;
