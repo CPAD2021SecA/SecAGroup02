@@ -76,6 +76,8 @@ String loggedInUserID()  {
     String achievementDesc1,
     String achivementHead2,
     String achievementDesc2,
+    String name,
+    String uid
   ) async {
     try{
        return await DatabaseService(uid: loggedInUserID()).updateMentorDetails(domain, photoUrl, specialist, about, achivementHead1, achievementDesc1, achivementHead2, achievementDesc2, 0.0, 0);

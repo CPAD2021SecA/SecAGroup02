@@ -225,7 +225,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                 head1, 
                                 desc1, 
                                 head2, 
-                                desc2);
+                                desc2,
+                                _auth.loggedInUser(),
+                                _auth.loggedInUserID());
 
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(

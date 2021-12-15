@@ -13,6 +13,10 @@ class HomePage extends StatelessWidget {
   final MentorModel model;
   final int n;
 
+  Future getUserProfileData() async{
+    
+  }
+
   Widget _appBar(context) {
     return Row(
       children: <Widget>[
@@ -115,6 +119,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getUserProfileData();
     return Scaffold(
       backgroundColor: Colors.lightBlue[50],
       body: SafeArea(
