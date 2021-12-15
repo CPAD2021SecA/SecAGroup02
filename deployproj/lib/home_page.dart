@@ -1,3 +1,6 @@
+import 'package:deployproj/model/userProfile.dart';
+import 'package:deployproj/service/dabase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:deployproj/helper/color.dart';
 import 'package:deployproj/helper/m_fonts.dart';
@@ -9,9 +12,10 @@ import 'package:deployproj/helper/constants.dart';
 import 'package:deployproj/model/domain_model.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key, this.model, this.n}) : super(key: key);
+  HomePage({Key key, this.model, this.n, this.profileData}) : super(key: key);
   final MentorModel model;
   final int n;
+  List<UserProfile> profileData = <UserProfile>[];
 
   Future getUserProfileData() async{
     
@@ -58,15 +62,16 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _cards(context, MentorModel model) {
+  Widget _cards(context, UserProfile model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
         onTap: () {
+          // DatabaseService().getDocs();
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ProfilePage(model: model)));
+                  builder: (context) => ProfilePage(profile: model)));
         },
         child: Row(
           children: <Widget>[
@@ -76,7 +81,7 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    image: AssetImage(model.image),
+                    image: AssetImage(model.photoUrl),
                   ),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
@@ -96,7 +101,7 @@ class HomePage extends StatelessWidget {
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600, fontSize: 15)),
                 SizedBox(height: 5),
-                Text(model.type,
+                Text(model.specialist,
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w300,
                         fontSize: 10,
@@ -107,7 +112,7 @@ class HomePage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Ratings(rating: model.ratings),
+                Ratings(rating: model.rating),
                 SizedBox(height: 5),
               ],
             )
@@ -119,7 +124,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getUserProfileData();
+    if(profileData.isEmpty){
+      return Center(
+        child: Text("There is no mentor for your preference.!"),
+      );
+    }
     return Scaffold(
       backgroundColor: Colors.lightBlue[50],
       body: SafeArea(
@@ -150,10 +159,11 @@ class HomePage extends StatelessWidget {
                     SizedBox(height: 25),
                     _category(context),
                     SizedBox(height: 20),
-                    _cards(context, Constants.mentorModelList[n][0]),
-                    _cards(context, Constants.mentorModelList[n][1]),
-                    _cards(context, Constants.mentorModelList[n][2]),
-                    _cards(context, Constants.mentorModelList[n][3]),
+                    for(UserProfile userData in profileData)
+                    _cards(context, userData),
+                    // _cards(context, Constants.mentorModelList[n][1]),
+                    // _cards(context, Constants.mentorModelList[n][2]),
+                    // _cards(context, Constants.mentorModelList[n][3]),
                   ],
                 ))
           ],

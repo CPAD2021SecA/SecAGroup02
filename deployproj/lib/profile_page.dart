@@ -1,3 +1,4 @@
+import 'package:deployproj/model/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:deployproj/helper/constants.dart';
 import 'package:deployproj/helper/m_fonts.dart';
@@ -7,8 +8,8 @@ import 'package:deployproj/helper/color.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key, this.model}) : super(key: key);
-  final MentorModel model;
+  const ProfilePage({Key key, this.profile}) : super(key: key);
+  final UserProfile profile;
   Widget _appBar(context) {
     return Row(
       children: <Widget>[
@@ -45,7 +46,7 @@ class ProfilePage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: AssetImage(model.image),
+                  image: AssetImage(profile.photoUrl),
                 ),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
@@ -104,13 +105,13 @@ class ProfilePage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(model.name,
+                  Text(profile.name,
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
                           height: 1.3)),
                   SizedBox(height: 5),
-                  Text(model.type,
+                  Text(profile.specialist,
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w300,
                           fontSize: 10,
@@ -121,11 +122,11 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
           SizedBox(height: 20),
-          Text("About ${model.name.split(" ")[0]}",
+          Text("About ${profile.name.split(" ")[0]}",
               style: GoogleFonts.inter(
                   fontWeight: FontWeight.w600, fontSize: 15, height: 1.3)),
           SizedBox(height: 5),
-          Text(model.desc,
+          Text(profile.about,
               style: GoogleFonts.inter(
                   fontWeight: FontWeight.w300,
                   fontSize: 12,
@@ -142,15 +143,15 @@ class ProfilePage extends StatelessWidget {
             style: GoogleFonts.inter(
                 fontWeight: FontWeight.w600, fontSize: 15, height: 1.3)),
         SizedBox(height: 16),
-        _achivmentCard(),
+        _achivmentCard(profile.ad1, profile.ah1),
         SizedBox(height: 16),
-        _achivmentCard(),
+        _achivmentCard(profile.ad2, profile.ah2),
         SizedBox(height: 16),
       ],
     );
   }
 
-  Widget _achivmentCard() {
+  Widget _achivmentCard(String ad, String ah) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
@@ -163,10 +164,10 @@ class ProfilePage extends StatelessWidget {
             width: 40,
             alignment: Alignment.center,
             child: Icon(MIcons.star_fill_16, color: MColor.yellow)),
-        title: Text("Supported 100+ startups",
+        title: Text(ah,
             style:
                 GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 15)),
-        subtitle: Text(Constants.description.substring(0, 90),
+        subtitle: Text(ad,
             style:
                 GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 12)),
       ),

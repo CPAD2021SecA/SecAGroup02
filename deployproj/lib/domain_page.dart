@@ -1,5 +1,7 @@
 import 'package:deployproj/main.dart';
+import 'package:deployproj/model/userProfile.dart';
 import 'package:deployproj/service/auth.dart';
+import 'package:deployproj/service/dabase.dart';
 import 'package:flutter/material.dart';
 import 'package:deployproj/helper/color.dart';
 import 'package:deployproj/helper/m_fonts.dart';
@@ -9,6 +11,12 @@ import 'package:deployproj/home_page.dart';
 
 class DomainPage extends StatelessWidget {
   final AuthService _auth = AuthService();
+  List<UserProfile> profE = <UserProfile>[];
+  List<UserProfile> profH = <UserProfile>[];
+  List<UserProfile> profEd = <UserProfile>[];
+  List<UserProfile> profLs = <UserProfile>[];
+  List<UserProfile> prof = <UserProfile>[];
+  final DatabaseService db = DatabaseService();
   DomainPage({Key key, this.model}) : super(key: key);
   final DomainModel model;
   List<DomainModel> list = [
@@ -22,8 +30,23 @@ class DomainPage extends StatelessWidget {
     return Card(
       child: GestureDetector(
         onTap: () {
+          // db.getDocs();
+          switch(n){
+            case 0:
+              prof = profH;
+              break;
+            case 1:
+              prof = profE;
+              break;
+            case 2: 
+              prof = profEd;
+              break;
+            case 3:
+              prof = profLs;
+              break;
+          }
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage(n: n)));
+              context, MaterialPageRoute(builder: (context) => HomePage(n: n, profileData: prof)));
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -49,6 +72,10 @@ class DomainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    profE = DatabaseService().getDocs('ENTERTAINMENT');
+    profH = DatabaseService().getDocs('HEALTH');
+    profEd = DatabaseService().getDocs('EDUCATION');
+    profLs = DatabaseService().getDocs('LIFESTYLE');
     return Scaffold(
       backgroundColor: Colors.lightBlue[50],
       appBar: AppBar(

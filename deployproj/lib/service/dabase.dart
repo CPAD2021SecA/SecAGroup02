@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deployproj/model/userProfile.dart';
 
 class DatabaseService{
   final String uid;
@@ -9,6 +10,25 @@ class DatabaseService{
   Future checkDocumentExist(String documentId) async{
     final snapShot = await mentorsCollection.doc(documentId).get();
     return snapShot;
+  }
+
+  List<UserProfile> getDocs(String filter)  {
+    UserProfile profile = UserProfile();
+    List<UserProfile> prof = <UserProfile>[];
+     mentorsCollection.where("domain", isEqualTo: filter).get().then((value) => 
+      value.docs.map((e) {
+        profile = UserProfile();
+        prof.add(profile.mapData(e.data() as Map));
+        print(e.data() as Map);
+      }).toList()
+    
+    );
+    // await mentorsCollection.where("domain", isEqualTo: "ENTERTAINMENT").get().then((value) {
+    //   value.docs.map((e) {
+    //     print(e.data());
+    //   });
+    // });
+    return prof;
   }
 
   Future updateMentorDetails(
@@ -32,8 +52,8 @@ class DatabaseService{
       "about": about,
       "achievementDesc1": achievementDesc1,
       "achivementHead1": achivementHead1,
-      "achievementDesc2": achievementDesc1,
-      "achivementHead2": achivementHead1,
+      "achievementDesc2": achievementDesc2,
+      "achivementHead2": achivementHead2,
       "rating": rating,
       "noOfRating": numberOfRatings,
       "uid": uid,
