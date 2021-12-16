@@ -1,3 +1,5 @@
+import 'package:deployproj/chat_page.dart';
+import 'package:deployproj/chatpage.dart';
 import 'package:deployproj/domain_page.dart';
 import 'package:deployproj/service/auth.dart';
 import 'package:deployproj/service/dabase.dart';
@@ -94,7 +96,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => new DomainPage()));
+                                        builder: (context) => new ChatsPage()));
                                 }
                                 }
                                 else{

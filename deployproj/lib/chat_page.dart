@@ -1,5 +1,6 @@
 import 'package:deployproj/model/mentor_model.dart';
 import 'package:deployproj/model/user.dart';
+import 'package:deployproj/model/userForMessage.dart';
 import 'package:deployproj/model/userProfile.dart';
 import 'package:deployproj/widget/messages_widget.dart';
 import 'package:deployproj/widget/new_message_widget.dart';
@@ -9,16 +10,21 @@ import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({
-    this.model,
+    this.name,
+    this.uid,
     Key key,
-  }) : super(key: key);
+  });
 
-  final UserProfile model;
+   String name;
+   String uid;
   @override
-  _ChatPageState createState() => _ChatPageState();
+  _ChatPageState createState() => _ChatPageState(name: name, uid: uid);
 }
 
 class _ChatPageState extends State<ChatPage> {
+  _ChatPageState({this.name, this.uid});
+  String name;
+  String uid;
   @override
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
@@ -26,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
         body: SafeArea(
           child: Column(
             children: [
-              ProfileHeaderWidget(name: widget.model.name),
+              ProfileHeaderWidget(name: name),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -37,10 +43,10 @@ class _ChatPageState extends State<ChatPage> {
                     //   topRight: Radius.circular(25),
                     // ),
                   ),
-                  child: MessagesWidget(uid: widget.model.uid),
+                  child: MessagesWidget(uid: uid),
                 ),
               ),
-              NewMessageWidget(uid: widget.model.uid)
+              NewMessageWidget(uid: uid,)
             ],
           ),
         ),

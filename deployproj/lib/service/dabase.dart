@@ -19,6 +19,7 @@ class DatabaseService{
 
   Future checkDocumentExist(String documentId) async{
     final snapShot = await mentorsCollection.doc(documentId).get();
+    print(snapShot.data());
     return snapShot;
   }
 
@@ -35,6 +36,20 @@ class DatabaseService{
     .collection("Users")
     .snapshots()
     .transform(Utils.transformer(UserData.fromJson));
+
+
+  List<UserData> getDocsForUser(){
+    UserData userData = UserData();
+    List<UserData> userList = <UserData>[];
+    FirebaseFirestore.instance.collection("Users").get().then((value) => 
+      value.docs.map((e) {
+        userData = UserData();
+        userList.add(userData.mapData(e.data() as Map));
+        print(e.data() as Map);
+      }).toList()
+    );
+    return userList;
+  }
 
   List<UserProfile> getDocs(String filter)  {
     UserProfile profile = UserProfile();
