@@ -12,7 +12,7 @@ class UserData {
 
   UserData mapData(Map<String, dynamic> data){
     this.name = data["name"];
-    this.idUser = data["uid"];
+    this.idUser = data["id"];
     this.email = data["email"];
     // print(this.toString());
     return this;
