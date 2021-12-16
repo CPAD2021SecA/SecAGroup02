@@ -96,7 +96,7 @@ String loggedInUserID()  {
     print(achivementHead1);
     print(achivementHead2);
     try{
-       return await DatabaseService(uid: loggedInUserID()).updateMentorDetails(domain, photoUrl, specialist, about, achivementHead1, achievementDesc1, achivementHead2, achievementDesc2, 0.0, 0, name, uid);
+       return await DatabaseService(uid: loggedInUserID()).updateMentorDetails(domain, photoUrl, specialist, about, achivementHead1, achievementDesc1, achivementHead2, achievementDesc2, 0, 0, name, uid);
     }
     catch(exception){
       return null;

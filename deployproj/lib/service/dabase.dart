@@ -64,7 +64,7 @@ class DatabaseService{
     String achievementDesc1,
     String achivementHead2,
     String achievementDesc2,
-    double rating,
+    int rating,
     int numberOfRatings,
     String name,
     String uid
