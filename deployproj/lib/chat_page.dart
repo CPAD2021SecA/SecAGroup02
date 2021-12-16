@@ -37,10 +37,10 @@ class _ChatPageState extends State<ChatPage> {
                     //   topRight: Radius.circular(25),
                     // ),
                   ),
-                  child: MessagesWidget(idUser: widget.model.name),
+                  child: MessagesWidget(uid: widget.model.uid),
                 ),
               ),
-              NewMessageWidget(idUser: widget.model.name)
+              NewMessageWidget(uid: widget.model.uid)
             ],
           ),
         ),
