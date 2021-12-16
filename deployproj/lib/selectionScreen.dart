@@ -1,6 +1,7 @@
 import 'package:deployproj/chat_page.dart';
 import 'package:deployproj/chatpage.dart';
 import 'package:deployproj/domain_page.dart';
+import 'package:deployproj/model/userForMessage.dart';
 import 'package:deployproj/service/auth.dart';
 import 'package:deployproj/service/dabase.dart';
 import 'package:deployproj/updateProfile.dart';
@@ -17,8 +18,10 @@ class _SelectionScreenState extends State<SelectionScreen> {
   String dropdownValue = "SELECT YOUR ROLE";
   final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
+  List<UserData> userData = <UserData>[];
   @override
   Widget build(BuildContext context) {
+    userData = DatabaseService().getDocsForUser();
     return new Scaffold(
         appBar: AppBar(
           title: Text("Mentizzzz"),
@@ -96,7 +99,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => new ChatsPage()));
+                                        builder: (context) => new ChatsPage(usersData: userData)));
                                 }
                                 }
                                 else{
