@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deployproj/model/userProfile.dart';
 
@@ -7,10 +9,28 @@ class DatabaseService{
 
   final CollectionReference mentorsCollection = FirebaseFirestore.instance.collection("Mentor");
 
+
+  Future checkDocumentExistForUser(String documentId) async{
+    return FirebaseFirestore.instance.collection("Users").doc(documentId).get();
+    
+  }
+
   Future checkDocumentExist(String documentId) async{
     final snapShot = await mentorsCollection.doc(documentId).get();
     return snapShot;
   }
+
+  Future updateUserDetails(String id, String name, String email) async{
+    return await FirebaseFirestore.instance.collection("Users").doc(id).set({
+      "id": id,
+      "name": name,
+      "email": email
+    }
+    );
+  }
+
+  // static Stream<List<UserProfile>> getChatUsers(String userId) => FirebaseFirestore.instance
+  //   .collection("Message/$userId/messages");
 
   List<UserProfile> getDocs(String filter)  {
     UserProfile profile = UserProfile();

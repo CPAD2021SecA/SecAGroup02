@@ -1,4 +1,5 @@
 import 'package:deployproj/service/auth.dart';
+import 'package:deployproj/service/dabase.dart';
 import 'package:deployproj/updateProfile.dart';
 import 'package:flutter/material.dart';
 
@@ -177,6 +178,7 @@ class _SignupPageState extends State<SignupPage> {
                                     await _auth.registerWithEmailAndPassword(
                                         username, password, name);
                                 print(result);
+                                
                                 if (result == null) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
@@ -198,6 +200,7 @@ class _SignupPageState extends State<SignupPage> {
                                                 new ProfileUpdate()));
                                   }
                                   else{
+                                  dynamic res = await DatabaseService().updateUserDetails(_auth.loggedInUserID(), _auth.getName(), _auth.getEmail());
                                   Navigator.pop(context);
                                   Navigator.push(
                                       context,

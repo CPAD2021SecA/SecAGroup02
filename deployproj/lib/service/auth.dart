@@ -22,6 +22,14 @@ class AuthService{
    return user.displayName;
 }
 
+String getName(){
+  return _auth.currentUser.displayName;
+}
+
+String getEmail(){
+  return _auth.currentUser.email;
+}
+
 String getPhotoUrl(){
   if(_auth.currentUser.photoURL.length > 0){
     return _auth.currentUser.photoURL;

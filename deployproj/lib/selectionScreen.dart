@@ -98,6 +98,10 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 }
                                 }
                                 else{
+                                  dynamic res = await DatabaseService(uid: _auth.loggedInUserID()).checkDocumentExistForUser(_auth.loggedInUserID());
+                                  if(res == null || !res.exists){
+                                    DatabaseService(uid: _auth.loggedInUserID()).updateUserDetails(_auth.loggedInUserID(), _auth.getName(), _auth.getEmail());
+                                  }
                                   Navigator.pop(context);
                                 Navigator.push(
                                     context,
