@@ -31,14 +31,14 @@ class DomainPage extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // db.getDocs();
-          switch(n){
+          switch (n) {
             case 0:
               prof = profH;
               break;
             case 1:
               prof = profE;
               break;
-            case 2: 
+            case 2:
               prof = profEd;
               break;
             case 3:
@@ -46,12 +46,17 @@ class DomainPage extends StatelessWidget {
               break;
           }
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage(n: n, profileData: prof)));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage(n: n, profileData: prof)));
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
+              // contentPadding: EdgeInsets.all(5),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0)),
               leading: Icon(
                 model.icon,
                 size: 45,

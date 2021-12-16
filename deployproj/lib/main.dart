@@ -248,7 +248,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => new SelectionScreen()));
+                                      builder: (context) =>
+                                          new SelectionScreen()));
                               // print(_auth.loggedInUserID());
                               // dynamic res = await DatabaseService(uid: _auth.loggedInUserID()).checkDocumentExist(_auth.loggedInUserID());
                               // if(res == null || !res.exists){
@@ -267,7 +268,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               //     MaterialPageRoute(
                               //         builder: (context) => new DomainPage()));
                               // }
-                              
+
                             }
                           },
                           child: Center(

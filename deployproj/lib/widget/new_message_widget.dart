@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NewMessageWidget extends StatefulWidget {
-  final String idUser;
+  final String uid;
 
   const NewMessageWidget({
-    @required this.idUser,
+    @required this.uid,
     Key key,
   }) : super(key: key);
 

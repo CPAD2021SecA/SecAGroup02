@@ -4,10 +4,10 @@ import 'package:deployproj/widget/message_widget.dart';
 import 'package:flutter/material.dart';
 
 class MessagesWidget extends StatelessWidget {
-  final String idUser;
+  final String uid;
 
   const MessagesWidget({
-    @required this.idUser,
+    @required this.uid,
     Key key,
   }) : super(key: key);
 
