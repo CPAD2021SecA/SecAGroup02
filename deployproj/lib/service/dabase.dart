@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deployproj/model/message.dart';
 import 'package:deployproj/model/userForMessage.dart';
 import 'package:deployproj/model/userProfile.dart';
 import 'package:deployproj/utils.dart';
@@ -30,6 +31,24 @@ class DatabaseService{
       "email": email
     }
     );
+  }
+
+  static Future uploadMessage(String idUser, String message, String loggedInUser, String loggedInUserName) async {
+    final refMessages =
+        FirebaseFirestore.instance.collection('chats/$idUser/messages');
+
+    final newMessage = Message(
+      idUser: loggedInUser,
+      username: loggedInUserName,
+      message: message,
+      createdAt: DateTime.now(),
+    );
+    await refMessages.add(newMessage.toJson());
+
+    // final refUsers = FirebaseFirestore.instance.collection('users');
+    // await refUsers
+    //     .doc(idUser)
+    //     .update({UserField.lastMessageTime: DateTime.now()});
   }
 
   static Stream<List<UserData>> getChatUsers() => FirebaseFirestore.instance

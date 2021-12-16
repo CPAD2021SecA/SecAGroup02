@@ -1,25 +1,32 @@
 // import 'package:firebase_chat_example/api/firebase_api.dart';
+import 'package:deployproj/service/auth.dart';
+import 'package:deployproj/service/dabase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NewMessageWidget extends StatefulWidget {
   final String uid;
-
-  const NewMessageWidget({
+  
+   NewMessageWidget({
     @required this.uid,
     Key key,
   }) : super(key: key);
 
   @override
-  _NewMessageWidgetState createState() => _NewMessageWidgetState();
+  _NewMessageWidgetState createState() => _NewMessageWidgetState(uid: uid);
 }
 
 class _NewMessageWidgetState extends State<NewMessageWidget> {
+  _NewMessageWidgetState({this.uid});
+  String uid;
   final _controller = TextEditingController();
+  AuthService _auth = AuthService();
   String message = '';
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
+
+    DatabaseService.uploadMessage(uid, message, _auth.loggedInUserID(), _auth.getName());
 
     // await FirebaseApi.uploadMessage(widget.idUser, message);
 
