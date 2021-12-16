@@ -31,10 +31,9 @@ String getEmail(){
 }
 
 String getPhotoUrl(){
-  if(_auth.currentUser.photoURL.length > 0){
+  // if(_auth.currentUser.photoURL.length > 0){
     return _auth.currentUser.photoURL;
-  }
-  return '';
+  
 }
 
 String loggedInUserID()  {

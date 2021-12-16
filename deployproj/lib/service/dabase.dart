@@ -1,7 +1,9 @@
 import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deployproj/model/userForMessage.dart';
 import 'package:deployproj/model/userProfile.dart';
+import 'package:deployproj/utils.dart';
 
 class DatabaseService{
   final String uid;
@@ -29,8 +31,10 @@ class DatabaseService{
     );
   }
 
-  // static Stream<List<UserProfile>> getChatUsers(String userId) => FirebaseFirestore.instance
-  //   .collection("Message/$userId/messages");
+  static Stream<List<UserData>> getChatUsers() => FirebaseFirestore.instance
+    .collection("Users")
+    .snapshots()
+    .transform(Utils.transformer(UserData.fromJson));
 
   List<UserProfile> getDocs(String filter)  {
     UserProfile profile = UserProfile();
