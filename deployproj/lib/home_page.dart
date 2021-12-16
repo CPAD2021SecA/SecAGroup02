@@ -17,9 +17,7 @@ class HomePage extends StatelessWidget {
   final int n;
   List<UserProfile> profileData = <UserProfile>[];
 
-  Future getUserProfileData() async{
-    
-  }
+  Future getUserProfileData() async {}
 
   Widget _appBar(context) {
     return Row(
@@ -124,7 +122,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(profileData.isEmpty){
+    if (profileData.isEmpty) {
       return Center(
         child: Text("There is no mentor for your preference.!"),
       );
@@ -159,8 +157,8 @@ class HomePage extends StatelessWidget {
                     SizedBox(height: 25),
                     _category(context),
                     SizedBox(height: 20),
-                    for(UserProfile userData in profileData)
-                    _cards(context, userData),
+                    for (UserProfile userData in profileData)
+                      _cards(context, userData),
                     // _cards(context, Constants.mentorModelList[n][1]),
                     // _cards(context, Constants.mentorModelList[n][2]),
                     // _cards(context, Constants.mentorModelList[n][3]),

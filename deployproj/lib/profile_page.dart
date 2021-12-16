@@ -1,4 +1,6 @@
+import 'package:deployproj/chat_page.dart';
 import 'package:deployproj/model/userProfile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:deployproj/helper/constants.dart';
 import 'package:deployproj/helper/m_fonts.dart';
@@ -174,7 +176,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _button() {
+  Widget _button(context) {
     return FlatButton(
       color: MColor.blue,
       onPressed: () {},
@@ -182,11 +184,19 @@ class ProfilePage extends StatelessWidget {
       child: Container(
         height: 60,
         alignment: Alignment.center,
-        child: Text("Chat Now",
-            style: GoogleFonts.inter(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            )),
+        child: TextButton(
+          child: Text(
+            "Chat now",
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: CupertinoColors.white),
+          ),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => new ChatPage(model: profile)));
+          },
+        ),
       ),
     );
   }
@@ -207,7 +217,7 @@ class ProfilePage extends StatelessWidget {
                 _description(),
                 SizedBox(height: 20),
                 _achivment(),
-                _button(),
+                _button(context),
                 SizedBox(height: 20),
               ],
             ),
