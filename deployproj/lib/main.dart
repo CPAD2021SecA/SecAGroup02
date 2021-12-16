@@ -1,3 +1,6 @@
+import 'package:deployproj/chat_page.dart';
+import 'package:deployproj/chatpage.dart';
+import 'package:deployproj/model/userForMessage.dart';
 import 'package:deployproj/passwordreset.dart';
 import 'package:deployproj/profile_page.dart';
 import 'package:deployproj/selectionScreen.dart';
@@ -17,6 +20,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  String dropdownVal = 'Mentor';
   @override
   Widget build(BuildContext context) {
     final _init = Firebase.initializeApp();
@@ -78,10 +82,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  List<UserData> userData = <UserData>[];
   String username = '';
   String password = '';
   @override
   Widget build(BuildContext context) {
+    userData = DatabaseService().getDocsForUser();
+    // res = DatabaseService().checkDocumentExist(_auth.loggedInUserID());
     return new Scaffold(
         appBar: AppBar(
           title: Text("Mentizzzz"),
@@ -160,7 +167,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue))),
                     ),
+                    SizedBox(height: 10.0),
+                    
                     // SizedBox(height: 10.0),
+
                     Container(
                       alignment: Alignment(1.0, 0.0),
                       padding: EdgeInsets.only(left: 20.0),
@@ -187,10 +197,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         elevation: 7.0,
                         child: GestureDetector(
                           onTap: () async {
+                            
                             if (_formKey.currentState.validate()) {
                               dynamic result =
                                   await _auth.loginWithEmailAndPassword(
                                       username, password);
+                              
                               print(result);
                               if (result == null) {
                                 ScaffoldMessenger.of(context)
@@ -202,12 +214,42 @@ class _MyHomePageState extends State<MyHomePage> {
                                     .showSnackBar(SnackBar(
                                   content: Text("Login Successful.!"),
                                 ));
-                                Navigator.pop(context);
+                                dynamic res = await DatabaseService().checkDocumentExist(_auth.loggedInUserID()).then((value) {
+                                  if(value == null || !value.exists){
+                                    Navigator.pop(context);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             new DomainPage()));
+                                  }
+                                  else{
+                                    Navigator.pop(context);
+                                print("Hoo tapaythu");
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            new ChatsPage(usersData: userData)));
+                                  }
+                                });
+                                // if(res == null){
+                                //   Navigator.pop(context);
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             new DomainPage()));
+                                // }
+                                // else{
+                                // Navigator.pop(context);
+                                // print("Hoo tapaythu");
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             new ChatsPage(usersData: userData)));
+                                // }
                               }
                             }
                           },

@@ -194,7 +194,7 @@ class ProfilePage extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => new ChatPage(model: profile)));
+                    builder: (context) => new ChatPage(name: profile.name, uid: profile.uid,)));
           },
         ),
       ),

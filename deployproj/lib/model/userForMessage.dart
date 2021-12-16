@@ -1,14 +1,23 @@
 class UserData {
-  final String idUser;
-  final String name;
-  final String email;
+   String idUser;
+   String name;
+   String email;
 
-  const UserData({
+   UserData({
     this.idUser,
     this.name,
     this.email
     
   });
+
+  UserData mapData(Map<String, dynamic> data){
+    this.name = data["name"];
+    this.idUser = data["uid"];
+    this.email = data["email"];
+    // print(this.toString());
+    return this;
+
+  }
 
   // User copyWith({
   //   String idUser,
