@@ -79,6 +79,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     ),
                     SizedBox(height: 10.0),
                     TextFormField(
+                      initialValue: _auth.getPhotoUrl(),
                         validator: (value) =>
                             value.isEmpty ? "Enter profile photo URL" : null,
                         onChanged: (val) {
