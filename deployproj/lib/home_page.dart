@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Ratings(rating: model.rating),
+                Ratings(rating: model.rating.toDouble()),
                 SizedBox(height: 5),
               ],
             )

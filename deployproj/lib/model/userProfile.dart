@@ -11,7 +11,7 @@ class UserProfile{
   String ah1;
   String ah2;
   int noRating;
-  double rating;
+  int rating;
 
   UserProfile mapData(Map<String, dynamic> data){
     this.name = data["name"];
