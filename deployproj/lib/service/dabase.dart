@@ -46,26 +46,24 @@ class DatabaseService{
     print(id1);
     print(id2);
 
+    // if(id1.substring(0,1) > id2.substring(0,1))
+
     QuerySnapshot<Map<String, dynamic>> _query1 =
         await FirebaseFirestore.instance.collection('chats/$id1/messages').get();
+         QuerySnapshot<Map<String, dynamic>> _query2 =
+        await FirebaseFirestore.instance.collection('chats/$id2/messages').get();
         if(_query1.docs.isNotEmpty){
-          print("true");
+          // print("true");
           return id1;
         }
-        // else{
-        //   print("false");
-        // }
 
-
-        QuerySnapshot<Map<String, dynamic>> _query2 =
-        await FirebaseFirestore.instance.collection('chats/$id2/messages').get();
         if(_query2.docs.isNotEmpty){
-          print("2true");
+          // print("2true");
           return id2;
         }
         else{
-          print(id1);
-          print("this is taken");
+          // print(id1);
+          // print("this is taken");
           return id1;
         }
     // final snap = await FirebaseFirestore.instance.collection('chats').doc(id1).get();
@@ -75,19 +73,34 @@ class DatabaseService{
 
   }
 
-  static Future check1(String idUser, String loginUser){
-    String uniId1 = idUser.substring(0, 4)+loginUser.substring(0,4);
-    String uniId2 = loginUser.substring(0,4)+idUser.substring(0,4);
-
+  static Future doubleCheck(String id) async{
+    QuerySnapshot<Map<String, dynamic>> _query1 =
+        await FirebaseFirestore.instance.collection('chats/$id/messages').get();
+        if(_query1.docs.isNotEmpty){
+          return id;
+        }
+        else{
+          return id;
+        }
   }
 
   static String check(String idUser, String loginUser) {
     String uniId1 = idUser.substring(0, 4)+loginUser.substring(0,4);
     String uniId2 = loginUser.substring(0,4)+idUser.substring(0,4);
+    int n =uniId1.compareTo(uniId2);
+    if(n<0){
+      print(uniId1);
+      return uniId1;
+    }
+    else{
+       print(uniId2);
+      return uniId2;
+    }
     String finalId = '';
-    details(uniId1, uniId2).then((value) {
-      return value;
-    });
+    // details(uniId1, uniId2).then((value) {
+    //   return value;
+    // });
+    // dynamic d =details(uniId1, uniId2);
     
     // print("checkckckckc");
     // return finalId;

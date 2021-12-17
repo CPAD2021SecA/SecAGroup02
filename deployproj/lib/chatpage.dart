@@ -91,7 +91,7 @@ class ChatsPage extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ChatPage(name: model.name, uid: model.idUser)));
+                  builder: (context) => ChatPage(queryUid: query, name: model.name, uid: model.idUser)));
         },
         child: Row(
           children: <Widget>[

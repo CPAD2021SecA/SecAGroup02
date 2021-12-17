@@ -47,9 +47,10 @@ class MessagesWidget extends StatelessWidget {
                           String idUser = doc['idUser'];
                           String username = doc['username'];
                           String message = doc['message'];
-                          DateTime createdAt = Utils.toDateTime(doc['createdAt']);
-                          Message me = Message(idUser: idUser, username: username, message: message, createdAt: createdAt);
-
+                          
+                          // DateTime createdAt = Utils.toDateTime(doc['createdAt']);
+                          Message me = Message(idUser: idUser, username: username, message: message);
+                          // print(me.message);
                           return MessageWidget(
                             message: me,
                             isMe: me.idUser ==
