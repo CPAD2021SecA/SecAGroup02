@@ -33,6 +33,13 @@ class DatabaseService{
     );
   }
 
+  static Stream<List<Message>> getMessages(String idUser) =>
+      FirebaseFirestore.instance
+          .collection('chats/$idUser/messages')
+          .orderBy(MessageField.createdAt, descending: true)
+          .snapshots()
+          .transform(Utils.transformer(Message.fromJson));
+
   static Future uploadMessage(String idUser, String message, String loggedInUser, String loggedInUserName) async {
     final refMessages =
         FirebaseFirestore.instance.collection('chats/$idUser/messages');
