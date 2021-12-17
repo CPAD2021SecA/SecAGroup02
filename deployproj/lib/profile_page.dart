@@ -1,5 +1,7 @@
 import 'package:deployproj/chat_page.dart';
 import 'package:deployproj/model/userProfile.dart';
+import 'package:deployproj/service/auth.dart';
+import 'package:deployproj/service/dabase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:deployproj/helper/constants.dart';
@@ -10,9 +12,15 @@ import 'package:deployproj/helper/color.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key, this.profile}) : super(key: key);
+   ProfilePage({Key key, this.profile}) : super(key: key);
+  AuthService _auth = AuthService();
   final UserProfile profile;
+  String queryUid = '';
   Widget _appBar(context) {
+    print(profile.uid);
+    print(_auth.loggedInUserID());
+    queryUid =
+    DatabaseService.check(profile.uid, _auth.loggedInUserID());
     return Row(
       children: <Widget>[
         GestureDetector(
@@ -176,7 +184,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _button(context) {
+  Widget _button(context, query) {
     return FlatButton(
       color: MColor.blue,
       onPressed: () {},
@@ -191,10 +199,13 @@ class ProfilePage extends StatelessWidget {
                 fontWeight: FontWeight.bold, color: CupertinoColors.white),
           ),
           onPressed: () {
+            print(query);
+            print("nulllsss");
+            print(query);
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => new ChatPage(name: profile.name, uid: profile.uid,)));
+                    builder: (context) => new ChatPage(name: profile.name, uid: profile.uid, queryUid: query)));
           },
         ),
       ),
@@ -203,6 +214,11 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // dynamic temp;
+    
+    // queryUid = temp.toString();
+    print("Changed");
+    print(queryUid);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -217,7 +233,7 @@ class ProfilePage extends StatelessWidget {
                 _description(),
                 SizedBox(height: 20),
                 _achivment(),
-                _button(context),
+                _button(context, queryUid),
                 SizedBox(height: 20),
               ],
             ),

@@ -226,6 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   else{
                                     Navigator.pop(context);
                                 print("Hoo tapaythu");
+                                print(userData);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
