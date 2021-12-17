@@ -39,15 +39,15 @@ class _SignupPageState extends State<SignupPage> {
                   child: Text(
                     'Signup',
                     style:
-                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(260.0, 55.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(200.0, 60.0, 0.0, 0.0),
                   child: Text(
                     '.',
                     style: TextStyle(
-                        fontSize: 80.0,
+                        fontSize: 50.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue),
                   ),

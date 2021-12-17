@@ -128,7 +128,7 @@ class HomePage extends StatelessWidget {
       );
     }
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
             child: Column(

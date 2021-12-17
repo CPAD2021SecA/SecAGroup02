@@ -35,8 +35,8 @@ class ProfilePage extends StatelessWidget {
             child: Icon(MIcons.keyboard_arrow_left),
           ),
         ),
-        Spacer(),
-        Icon(MIcons.heart_24),
+        // Spacer(),
+        // Icon(MIcons.heart_24),
       ],
     );
   }
@@ -152,7 +152,7 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Achievments",
+        Text("Achievements",
             style: GoogleFonts.inter(
                 fontWeight: FontWeight.w600, fontSize: 15, height: 1.3)),
         SizedBox(height: 16),
@@ -230,6 +230,7 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                SizedBox(height: 40),
                 _appBar(context),
                 _cards(context),
                 SizedBox(height: 20),
