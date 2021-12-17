@@ -12,18 +12,16 @@ import 'package:deployproj/helper/color.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
-   ProfilePage({Key key, this.profile}) : super(key: key);
+  ProfilePage({Key key, this.profile}) : super(key: key);
   AuthService _auth = AuthService();
   final UserProfile profile;
   String queryUid = '';
   Widget _appBar(context) {
+    Text("Mentizzzz");
     print(profile.uid);
     print(_auth.loggedInUserID());
-    // if(profile.uid.characters.characterAt(0). > _auth.loggedInUserID().characters.characterAt(0)){
 
-    // }
-    queryUid =
-    DatabaseService.check(profile.uid, _auth.loggedInUserID());
+    queryUid = DatabaseService.check(profile.uid, _auth.loggedInUserID());
     return Row(
       children: <Widget>[
         GestureDetector(
@@ -35,8 +33,6 @@ class ProfilePage extends StatelessWidget {
             child: Icon(MIcons.keyboard_arrow_left),
           ),
         ),
-        // Spacer(),
-        // Icon(MIcons.heart_24),
       ],
     );
   }
@@ -208,7 +204,10 @@ class ProfilePage extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => new ChatPage(name: profile.name, uid: profile.uid, queryUid: query)));
+                    builder: (context) => new ChatPage(
+                        name: profile.name,
+                        uid: profile.uid,
+                        queryUid: query)));
           },
         ),
       ),
@@ -217,12 +216,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // dynamic temp;
-    
-    // queryUid = temp.toString();
     print("Changed");
     print(queryUid);
     return Scaffold(
+      appBar: AppBar(title: Text("Mentizzzz")),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -230,8 +227,6 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 40),
-                _appBar(context),
                 _cards(context),
                 SizedBox(height: 20),
                 _description(),
