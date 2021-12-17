@@ -43,10 +43,6 @@ class DatabaseService{
   // static Future check1(String id){}
 
   static Future details(String id1, String id2) async{
-    print(id1);
-    print(id2);
-
-    // if(id1.substring(0,1) > id2.substring(0,1))
 
     QuerySnapshot<Map<String, dynamic>> _query1 =
         await FirebaseFirestore.instance.collection('chats/$id1/messages').get();
@@ -58,18 +54,12 @@ class DatabaseService{
         }
 
         if(_query2.docs.isNotEmpty){
-          // print("2true");
           return id2;
         }
         else{
-          // print(id1);
-          // print("this is taken");
           return id1;
         }
-    // final snap = await FirebaseFirestore.instance.collection('chats').doc(id1).get();
-    // print(snap.exists);
-    // final snap2 = await FirebaseFirestore.instance.collection('chats').doc(id2).get();
-    // print(snap2.exists);
+
 
   }
 
@@ -96,57 +86,11 @@ class DatabaseService{
        print(uniId2);
       return uniId2;
     }
-    String finalId = '';
-    // details(uniId1, uniId2).then((value) {
-    //   return value;
-    // });
-    // dynamic d =details(uniId1, uniId2);
     
-    // print("checkckckckc");
-    // return finalId;
-    // print(temp.);
-  //  final check1 =  FirebaseFirestore.instance.collection('chats/$uniId1/messages').id;
-  //   final check2 =  FirebaseFirestore.instance.collection('chats/$uniId2/messages').id;
-  //   print(check1);
-  //   print(check2);
-  //   if(check1 == null){
-  //      print("Came here1");
-  //     if(check2 == null){
-  //       print("came here");
-  //       finalId = uniId1;
-  //     }
-  //     else{
-  //       print("hahaha");
-  //       finalId = uniId2;
-  //     };
-
-  //   }
-  //   else{
-  //     print("huhuhuh");
-  //     finalId = uniId1;
-  //   }
-  //   print(finalId);
-  //   return finalId;
   }
 
   static Future uploadMessage(String idUser, String message, String loggedInUser, String loggedInUserName) async {
-    // String uniId1 = idUser+loggedInUser;
-    // String uniId2 = loggedInUser+idUser;
-    // String finalId = '';
-    // final check1 = await FirebaseFirestore.instance.collection('chats/$uniId1/messages').get();
-    // final check2 = await FirebaseFirestore.instance.collection('chats/$uniId2/messages').get();
-    // if(check1 == null){
-       
-    //   if(check2 == null){
-    //     finalId = uniId1;
-    //   }
-    //   else{
-    //     finalId = uniId2;
-    //   }
-    // }
-    // else{
-    //   finalId = uniId1;
-    // }
+    
     print("this is id");
     print(idUser);
     final refMessages =
@@ -160,10 +104,7 @@ class DatabaseService{
     );
     await refMessages.add(newMessage.toJson());
 
-    // final refUsers = FirebaseFirestore.instance.collection('users');
-    // await refUsers
-    //     .doc(idUser)
-    //     .update({UserField.lastMessageTime: DateTime.now()});
+    
   }
 
   static Stream<List<UserData>> getChatUsers() => FirebaseFirestore.instance
@@ -196,11 +137,7 @@ class DatabaseService{
       }).toList()
     
     );
-    // await mentorsCollection.where("domain", isEqualTo: "ENTERTAINMENT").get().then((value) {
-    //   value.docs.map((e) {
-    //     print(e.data());
-    //   });
-    // });
+    
     return prof;
   }
 
