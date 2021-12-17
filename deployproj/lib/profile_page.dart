@@ -19,6 +19,9 @@ class ProfilePage extends StatelessWidget {
   Widget _appBar(context) {
     print(profile.uid);
     print(_auth.loggedInUserID());
+    // if(profile.uid.characters.characterAt(0). > _auth.loggedInUserID().characters.characterAt(0)){
+
+    // }
     queryUid =
     DatabaseService.check(profile.uid, _auth.loggedInUserID());
     return Row(

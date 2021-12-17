@@ -20,17 +20,20 @@ class NewMessageWidget extends StatefulWidget {
 
 class _NewMessageWidgetState extends State<NewMessageWidget> {
   _NewMessageWidgetState({this.uid, this.query});
+  AuthService _authService = AuthService();
   String uid;
   String query;
   final _controller = TextEditingController();
   AuthService _auth = AuthService();
   String message = '';
+  String q;
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
     print("new message");
     print(query);
-    DatabaseService.uploadMessage(query, message, _auth.loggedInUserID(), _auth.getName());
+    String q =DatabaseService.check(uid, _auth.loggedInUserID());
+    DatabaseService.uploadMessage(q, message, _auth.loggedInUserID(), _auth.getName());
 
     // await FirebaseApi.uploadMessage(widget.idUser, message);
 
@@ -38,7 +41,10 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) { 
+    // q =DatabaseService.check(uid, _auth.loggedInUserID());
+    // print(q+ " is q");
+    return Container(
         color: Colors.white,
         padding: EdgeInsets.all(8),
         child: Row(
@@ -79,4 +85,5 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
           ],
         ),
       );
+}
 }
