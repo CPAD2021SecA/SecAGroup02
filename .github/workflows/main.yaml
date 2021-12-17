@@ -18,10 +18,17 @@ jobs:
           run: |
             flutter config --enable-web
             flutter pub get
+            flutter build apk --debug 
             flutter build web --release
           working-directory: ./deployproj
-
-        # Deploy Firebase Hosting
+          
+        - name: Push to Releases
+          uses: ncipollo/release-action@v1
+          with:
+            artifacts: "build/app/outputs/apk/debug/*"
+            tag: v1.0.${{ github.run_number }}
+              
+          # Deploy Firebase Hosting
         - name: Deploy Firebase Hosting
           uses: w9jds/firebase-action@master
           with:
