@@ -225,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   }
                                   else{
                                     Navigator.pop(context);
-                                print("Hoo tapaythu");
+                                
                                 print(userData);
                                 Navigator.push(
                                     context,
@@ -234,23 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             new ChatsPage(usersData: userData)));
                                   }
                                 });
-                                // if(res == null){
-                                //   Navigator.pop(context);
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             new DomainPage()));
-                                // }
-                                // else{
-                                // Navigator.pop(context);
-                                // print("Hoo tapaythu");
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             new ChatsPage(usersData: userData)));
-                                // }
+                                
                               }
                             }
                           },
@@ -293,24 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           new SelectionScreen()));
-                              // print(_auth.loggedInUserID());
-                              // dynamic res = await DatabaseService(uid: _auth.loggedInUserID()).checkDocumentExist(_auth.loggedInUserID());
-                              // if(res == null || !res.exists){
-                              //   print("hi");
-                              //   Navigator.pop(context);
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => new ProfileUpdate()));
-                              // }
-                              // else{
-                              //   print("hoo");
-                              //   Navigator.pop(context);
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => new DomainPage()));
-                              // }
+                              
 
                             }
                           },
