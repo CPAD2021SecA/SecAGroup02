@@ -48,6 +48,14 @@ class HomePage extends StatelessWidget {
           ],
         ),
         SizedBox(width: 12),
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   mainAxisAlignment: MainAxisAlignment.start,
+        //   children: <Widget>[
+        //     Text("Popular mentors",
+        //         style: GoogleFonts.inter(fontSize: 14, color: Colors.black38)),
+        //   ],
+        // ),
       ],
     );
   }
@@ -121,7 +129,6 @@ class HomePage extends StatelessWidget {
     }
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Mentizzzz")),
       body: SafeArea(
         child: SingleChildScrollView(
             child: Column(
@@ -132,6 +139,8 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    SizedBox(height: 40),
+                    _appBar(context),
                     SizedBox(height: 30),
                     Text("Find Your",
                         style: GoogleFonts.inter(
@@ -143,11 +152,16 @@ class HomePage extends StatelessWidget {
                             fontSize: 22,
                             color: Colors.black87,
                             fontWeight: FontWeight.w500)),
+                    // SizedBox(height: 7),
+                    // _searchBar(context),
                     SizedBox(height: 25),
                     _category(context),
                     SizedBox(height: 20),
                     for (UserProfile userData in profileData)
                       _cards(context, userData),
+                    // _cards(context, Constants.mentorModelList[n][1]),
+                    // _cards(context, Constants.mentorModelList[n][2]),
+                    // _cards(context, Constants.mentorModelList[n][3]),
                   ],
                 ))
           ],
