@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // res = DatabaseService().checkDocumentExist(_auth.loggedInUserID());
     return new Scaffold(
         appBar: AppBar(
-          title: Text("Mentizzzz"),
+          // title: Text("Mentizzzz"),
         ),
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
@@ -103,21 +103,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.fromLTRB(15.0, 50.0, 0.0, 0.0),
-                    child: Text('Hello',
+                    child: Text('Mentizzzz',
                         style: TextStyle(
-                            fontSize: 80.0, fontWeight: FontWeight.bold)),
+                            fontSize: 50.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(16.0, 110.0, 0.0, 0.0),
-                    child: Text('There',
+                    child: Text('Find your path',
                         style: TextStyle(
-                            fontSize: 80.0, fontWeight: FontWeight.bold)),
+                            fontSize: 25.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(220.0, 115.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(176.0, 88.0, 0.0, 0.0),
                     child: Text('.',
                         style: TextStyle(
-                            fontSize: 80.0,
+                            fontSize: 50.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.blue)),
                   )
@@ -277,9 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           new SelectionScreen()));
-                              
-
-                            }
+                                }
                           },
                           child: Center(
                               child: Row(
@@ -287,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               Center(
                                 child: ImageIcon(
-                                    AssetImage('assets/images/facebook.png')),
+                                    AssetImage('assets/images/google_icon.png')),
                               ),
                               SizedBox(width: 10.0),
                               Center(
