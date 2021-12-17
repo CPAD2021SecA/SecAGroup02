@@ -12,19 +12,23 @@ class ChatPage extends StatefulWidget {
   ChatPage({
     this.name,
     this.uid,
+    this.queryUid,
     Key key,
   });
 
    String name;
    String uid;
+   String queryUid;
   @override
-  _ChatPageState createState() => _ChatPageState(name: name, uid: uid);
+  _ChatPageState createState() => _ChatPageState(name: name, uid: uid, query: queryUid);
 }
 
 class _ChatPageState extends State<ChatPage> {
-  _ChatPageState({this.name, this.uid});
+  _ChatPageState({this.name, this.uid, this.query});
   String name;
   String uid;
+  String query;
+  
   @override
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
@@ -43,10 +47,10 @@ class _ChatPageState extends State<ChatPage> {
                     //   topRight: Radius.circular(25),
                     // ),
                   ),
-                  child: MessagesWidget(uid: uid),
+                  child: MessagesWidget(uid: uid, query: query),
                 ),
               ),
-              NewMessageWidget(uid: uid,)
+              NewMessageWidget(uid: uid, query: query)
             ],
           ),
         ),

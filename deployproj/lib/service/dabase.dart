@@ -39,8 +39,103 @@ class DatabaseService{
           .orderBy(MessageField.createdAt, descending: true)
           .snapshots()
           .transform(Utils.transformer(Message.fromJson));
+  
+  // static Future check1(String id){}
+
+  static Future details(String id1, String id2) async{
+    print(id1);
+    print(id2);
+
+    QuerySnapshot<Map<String, dynamic>> _query1 =
+        await FirebaseFirestore.instance.collection('chats/$id1/messages').get();
+        if(_query1.docs.isNotEmpty){
+          print("true");
+          return id1;
+        }
+        // else{
+        //   print("false");
+        // }
+
+
+        QuerySnapshot<Map<String, dynamic>> _query2 =
+        await FirebaseFirestore.instance.collection('chats/$id2/messages').get();
+        if(_query2.docs.isNotEmpty){
+          print("2true");
+          return id2;
+        }
+        else{
+          print(id1);
+          print("this is taken");
+          return id1;
+        }
+    // final snap = await FirebaseFirestore.instance.collection('chats').doc(id1).get();
+    // print(snap.exists);
+    // final snap2 = await FirebaseFirestore.instance.collection('chats').doc(id2).get();
+    // print(snap2.exists);
+
+  }
+
+  static Future check1(String idUser, String loginUser){
+    String uniId1 = idUser.substring(0, 4)+loginUser.substring(0,4);
+    String uniId2 = loginUser.substring(0,4)+idUser.substring(0,4);
+
+  }
+
+  static String check(String idUser, String loginUser) {
+    String uniId1 = idUser.substring(0, 4)+loginUser.substring(0,4);
+    String uniId2 = loginUser.substring(0,4)+idUser.substring(0,4);
+    String finalId = '';
+    details(uniId1, uniId2).then((value) {
+      return value;
+    });
+    
+    // print("checkckckckc");
+    // return finalId;
+    // print(temp.);
+  //  final check1 =  FirebaseFirestore.instance.collection('chats/$uniId1/messages').id;
+  //   final check2 =  FirebaseFirestore.instance.collection('chats/$uniId2/messages').id;
+  //   print(check1);
+  //   print(check2);
+  //   if(check1 == null){
+  //      print("Came here1");
+  //     if(check2 == null){
+  //       print("came here");
+  //       finalId = uniId1;
+  //     }
+  //     else{
+  //       print("hahaha");
+  //       finalId = uniId2;
+  //     };
+
+  //   }
+  //   else{
+  //     print("huhuhuh");
+  //     finalId = uniId1;
+  //   }
+  //   print(finalId);
+  //   return finalId;
+  }
 
   static Future uploadMessage(String idUser, String message, String loggedInUser, String loggedInUserName) async {
+    // String uniId1 = idUser+loggedInUser;
+    // String uniId2 = loggedInUser+idUser;
+    // String finalId = '';
+    // final check1 = await FirebaseFirestore.instance.collection('chats/$uniId1/messages').get();
+    // final check2 = await FirebaseFirestore.instance.collection('chats/$uniId2/messages').get();
+    // if(check1 == null){
+       
+    //   if(check2 == null){
+    //     finalId = uniId1;
+    //   }
+    //   else{
+    //     finalId = uniId2;
+    //   }
+    // }
+    // else{
+    //   finalId = uniId1;
+    // }
+    print("this is id");
+    print(idUser);
     final refMessages =
         FirebaseFirestore.instance.collection('chats/$idUser/messages');
 

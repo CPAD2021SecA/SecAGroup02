@@ -9,20 +9,23 @@ import 'package:flutter/material.dart';
 
 class MessagesWidget extends StatelessWidget {
   final String uid;
+  String query;
   AuthService _auth = AuthService();
 
    MessagesWidget({
     @required this.uid,
+    this.query,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-          .collection('chats/$uid/messages')
+          .collection('chats/$query/messages')
           .orderBy(MessageField.createdAt, descending: true)
           .snapshots(),
         builder: (context, snapshot) {
+          print(query);
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());

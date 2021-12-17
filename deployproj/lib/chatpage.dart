@@ -12,10 +12,11 @@ class ChatsPage extends StatelessWidget {
   // const ChatsPage({ Key? key }) : super(key: key);
   ChatsPage({this.usersData});
   List<UserData> usersData = <UserData>[];
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
-    final AuthService _auth = AuthService();
+    
     if (usersData.isEmpty) {
       return Center(
         child: Text("There is no users yet!"),
@@ -76,6 +77,10 @@ class ChatsPage extends StatelessWidget {
 
 
       Widget _cards(context, UserData model) {
+        String query =
+         DatabaseService.check(model.idUser, _auth.loggedInUserID());
+
+        // print("ille"+query);
     return Padding(
       
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),

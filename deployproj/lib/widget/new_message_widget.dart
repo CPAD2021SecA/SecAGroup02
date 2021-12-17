@@ -6,27 +6,31 @@ import 'package:flutter/services.dart';
 
 class NewMessageWidget extends StatefulWidget {
   final String uid;
+  String query;
   
    NewMessageWidget({
     @required this.uid,
+    this.query,
     Key key,
   }) : super(key: key);
 
   @override
-  _NewMessageWidgetState createState() => _NewMessageWidgetState(uid: uid);
+  _NewMessageWidgetState createState() => _NewMessageWidgetState(uid: uid, query: query);
 }
 
 class _NewMessageWidgetState extends State<NewMessageWidget> {
-  _NewMessageWidgetState({this.uid});
+  _NewMessageWidgetState({this.uid, this.query});
   String uid;
+  String query;
   final _controller = TextEditingController();
   AuthService _auth = AuthService();
   String message = '';
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
-
-    DatabaseService.uploadMessage(uid, message, _auth.loggedInUserID(), _auth.getName());
+    print("new message");
+    print(query);
+    DatabaseService.uploadMessage(query, message, _auth.loggedInUserID(), _auth.getName());
 
     // await FirebaseApi.uploadMessage(widget.idUser, message);
 
